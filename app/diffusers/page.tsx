@@ -60,7 +60,7 @@ const specs: Record<string, { en: string; ar: string }[]> = {
 };
 
 export default function DiffusersPage() {
-  const [lang, setLang] = useState<Lang>('ar');
+  const [lang, setLang] = useState<Lang>('en');
   const [filter, setFilter] = useState<'all' | 'commercial' | 'personal'>('all');
   const t = translations[lang];
   const isRtl = lang === 'ar';

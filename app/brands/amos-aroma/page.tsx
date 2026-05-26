@@ -61,7 +61,7 @@ const lifestyleProducts = [
 ];
 
 export default function AmosAromaPage() {
-  const [lang, setLang] = useState<Lang>('ar');
+  const [lang, setLang] = useState<Lang>('en');
   const [tab, setTab] = useState<Tab>('overview');
   const [diffFilter, setDiffFilter] = useState<'all' | 'commercial' | 'personal'>('all');
   const [fragFamily, setFragFamily] = useState('All');

@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import { translations, type Lang } from '@/lib/data';
 
 export default function ContactPage() {
-  const [lang, setLang] = useState<Lang>('ar');
+  const [lang, setLang] = useState<Lang>('en');
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', phone: '', type: '', message: '' });
   const t = translations[lang];

@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import { translations, brands, type Lang } from '@/lib/data';
 
 export default function BrandsPage() {
-  const [lang, setLang] = useState<Lang>('ar');
+  const [lang, setLang] = useState<Lang>('en');
   const t = translations[lang];
   const isRtl = lang === 'ar';
 

@@ -69,7 +69,7 @@ const products = [
 ];
 
 export default function LifestylePage() {
-  const [lang, setLang] = useState<Lang>('ar');
+  const [lang, setLang] = useState<Lang>('en');
   const t = translations[lang];
   const isRtl = lang === 'ar';
 

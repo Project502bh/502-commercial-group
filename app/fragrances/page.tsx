@@ -11,7 +11,7 @@ const familyIcons: Record<string, string> = {
 };
 
 export default function FragrancesPage() {
-  const [lang, setLang] = useState<Lang>('ar');
+  const [lang, setLang] = useState<Lang>('en');
   const [family, setFamily] = useState('All');
   const [concentration, setConcentration] = useState('All');
   const [hotelOnly, setHotelOnly] = useState(false);
