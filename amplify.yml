@@ -3,14 +3,14 @@ frontend:
   phases:
     preBuild:
       commands:
-        - nvm install 20
-        - nvm use 20
+        - nvm use 20 || nvm install 20 && nvm use 20
         - node --version
         - npm --version
-        - npm ci
+        - npm ci --prefer-offline
     build:
       commands:
         - npm run build
+        - ls -la out/ || echo "WARNING: out/ directory not found!"
   artifacts:
     baseDirectory: out
     files:
@@ -18,4 +18,3 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
-      - .next/cache/**/*
