@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { translations, type Lang } from '@/lib/data';
@@ -19,9 +20,30 @@ export default function ContactPage() {
 
   const infoItems = [
     { icon: '📧', en: 'Email', ar: 'البريد الإلكتروني', val: 'info@502group.bh' },
-    { icon: '📞', en: 'Phone', ar: 'الهاتف', val: '+973 XXXX XXXX' },
+    { icon: '📞', en: 'Phone', ar: 'الهاتف', val: '+973 33080502' },
     { icon: '🌐', en: 'Website', ar: 'الموقع', val: 'www.502group.bh' },
     { icon: '🏢', en: 'Location', ar: 'الموقع', val: isRtl ? 'مملكة البحرين' : 'Kingdom of Bahrain' },
+  ];
+
+  const team = [
+    {
+      name: 'Majdi Aldoseri',
+      nameAr: 'ماجدي الدوسري',
+      title: 'General Manager',
+      titleAr: 'المدير العام',
+      email: 'majdi@502group.bh',
+      phone: '+973 33080502',
+      photo: '/team/majdi.jpg',
+    },
+    {
+      name: 'Ali Aldoseri',
+      nameAr: 'علي الدوسري',
+      title: 'Commercial Operations & Procurement Manager',
+      titleAr: 'مدير العمليات التجارية والمشتريات',
+      email: 'ali@502group.bh',
+      phone: '+973 36683669',
+      photo: '/team/ali.jpg',
+    },
   ];
 
   return (
@@ -39,6 +61,73 @@ export default function ContactPage() {
           <h1 className="section-title">{t.contact.title}</h1>
           <div className="divider" />
           <p style={{ color: '#9A9080', fontSize: '1rem', maxWidth: '560px', lineHeight: 1.7 }}>{t.contact.subtitle}</p>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section style={{ padding: '3rem 0 0', background: 'rgba(0,0,0,0.2)' }}>
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 style={{
+            fontFamily: 'var(--font-orbitron), monospace',
+            color: '#E8E0D0',
+            fontSize: '1.1rem',
+            fontWeight: 700,
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            marginBottom: '1.75rem',
+            textAlign: 'center',
+          }}>
+            {isRtl ? 'تواصل مع فريقنا' : 'Contact Our Team'}
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', maxWidth: '720px', margin: '0 auto 3rem' }}>
+            {team.map(member => (
+              <div key={member.email} className="card" style={{ padding: '2rem', textAlign: 'center' }}>
+                {/* Photo */}
+                <div style={{ width: '90px', height: '90px', borderRadius: '50%', overflow: 'hidden', margin: '0 auto 1rem', border: '2px solid rgba(201,168,76,0.3)', background: 'rgba(201,168,76,0.08)' }}>
+                  <Image
+                    src={member.photo}
+                    alt={member.name}
+                    width={90}
+                    height={90}
+                    unoptimized
+                    style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                  />
+                </div>
+                {/* Name */}
+                <div style={{ color: '#E8E0D0', fontWeight: 700, fontSize: '1rem', marginBottom: '0.3rem' }}>
+                  {isRtl ? member.nameAr : member.name}
+                </div>
+                {/* Title */}
+                <div style={{ color: '#C9A84C', fontSize: '0.75rem', fontWeight: 500, marginBottom: '1.25rem', lineHeight: 1.4 }}>
+                  {isRtl ? member.titleAr : member.title}
+                </div>
+                {/* Contact */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                  <a href={`mailto:${member.email}`} style={{ color: '#9A9080', fontSize: '0.82rem', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}>
+                    📧 {member.email}
+                  </a>
+                  <a href={`tel:${member.phone}`} style={{ color: '#9A9080', fontSize: '0.82rem', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}>
+                    📞 {member.phone}
+                  </a>
+                </div>
+                {/* WhatsApp */}
+                <a
+                  href={`https://wa.me/${member.phone.replace(/[^0-9]/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                    marginTop: '1rem', padding: '0.45rem 1.1rem',
+                    background: 'rgba(37,211,102,0.08)', border: '1px solid rgba(37,211,102,0.25)',
+                    borderRadius: '0.5rem', color: '#25D366', fontSize: '0.78rem', fontWeight: 600,
+                    textDecoration: 'none',
+                  }}
+                >
+                  💬 WhatsApp
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -82,7 +171,9 @@ export default function ContactPage() {
                 <div style={{ color: '#E8E0D0', fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.35rem' }}>
                   {isRtl ? 'تواصل عبر واتساب' : 'Chat on WhatsApp'}
                 </div>
-                <div style={{ color: '#9A9080', fontSize: '0.8rem' }}>+973 XXXX XXXX</div>
+                <a href="https://wa.me/97333080502" target="_blank" rel="noopener noreferrer" style={{ color: '#25D366', fontSize: '0.85rem', textDecoration: 'none', fontWeight: 600 }}>
+                  +973 33080502
+                </a>
               </div>
             </div>
 
