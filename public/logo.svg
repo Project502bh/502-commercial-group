@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 108" width="100" height="108">
+  <!-- Top face (cyan) -->
+  <polygon points="50,4 96,27 50,50 4,27" fill="#00E6F7"/>
+  <!-- Inner white diamond on top -->
+  <polygon points="50,14 78,28 50,42 22,28" fill="white"/>
+  <!-- Center cyan square -->
+  <polygon points="50,22 63,29 50,36 37,29" fill="#00C8DA"/>
+  <!-- Small dark dot center -->
+  <circle cx="47.5" cy="29" r="1.8" fill="#0A1520"/>
+
+  <!-- Left face (white/light) -->
+  <polygon points="4,27 50,50 50,106 4,83" fill="#daeaf0"/>
+  <!-- Left face horizontal slots -->
+  <polygon points="9,54 44,70 44,76 9,60"   fill="white" opacity="0.55"/>
+  <polygon points="9,66 44,82 44,88 9,72"   fill="white" opacity="0.55"/>
+  <polygon points="9,78 44,94 44,100 9,84"  fill="white" opacity="0.55"/>
+
+  <!-- Right face (cyan darker) -->
+  <polygon points="50,50 96,27 96,83 50,106" fill="#00B5C8"/>
+  <!-- Right face white bars -->
+  <polygon points="56,57 90,41 90,49 56,65" fill="white"/>
+  <polygon points="56,68 90,52 90,60 56,76" fill="white"/>
+  <polygon points="56,79 90,63 90,71 56,87" fill="white"/>
+</svg>
