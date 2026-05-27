@@ -70,18 +70,22 @@ export default function Navbar({ activePage }: NavbarProps) {
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-7">
             {links.map(l => (
-              <Link key={l.key} href={l.href} style={{
-                fontFamily: 'var(--font-montserrat), sans-serif',
-                color: activePage === l.key ? '#00E6F7' : '#7AAFC0',
-                fontSize: '0.78rem',
-                fontWeight: activePage === l.key ? 600 : 400,
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                transition: 'color 0.2s',
-                textDecoration: 'none',
-                borderBottom: activePage === l.key ? '1px solid #00E6F7' : '1px solid transparent',
-                paddingBottom: '2px',
-              }}>
+              <Link key={l.key} href={l.href}
+                style={{
+                  fontFamily: 'var(--font-montserrat), sans-serif',
+                  color: activePage === l.key ? '#00E6F7' : '#7AAFC0',
+                  fontSize: '0.78rem',
+                  fontWeight: activePage === l.key ? 600 : 400,
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase',
+                  transition: 'color 0.2s',
+                  textDecoration: 'none',
+                  borderBottom: activePage === l.key ? '1px solid #00E6F7' : '1px solid transparent',
+                  paddingBottom: '2px',
+                }}
+                onMouseEnter={e => { if (activePage !== l.key) (e.currentTarget as HTMLElement).style.color = '#E8F6FF'; }}
+                onMouseLeave={e => { if (activePage !== l.key) (e.currentTarget as HTMLElement).style.color = '#7AAFC0'; }}
+              >
                 {t.nav[l.key]}
               </Link>
             ))}

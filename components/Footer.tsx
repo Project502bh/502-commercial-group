@@ -64,7 +64,7 @@ export default function Footer() {
             </div>
             <div style={{ color: '#7AAFC0', fontSize: '0.82rem', lineHeight: 2 }}>
               <div>📧 info@502group.bh</div>
-              <div>📞 +973 XXXX XXXX</div>
+              <div>📞 +973 33080502</div>
               <div>🌐 www.502group.bh</div>
             </div>
           </div>

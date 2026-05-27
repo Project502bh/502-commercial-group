@@ -59,6 +59,8 @@ h1, h2, h3, .font-orbitron {
   box-shadow: 0 0 28px rgba(0, 230, 247, 0.45);
   transform: translateY(-2px);
 }
+.btn-cyan:active { transform: translateY(0); opacity: 0.85; }
+
 /* btn-gold removed — use btn-cyan consistently */
 
 .btn-outline {
@@ -79,6 +81,14 @@ h1, h2, h3, .font-orbitron {
   background: rgba(0, 230, 247, 0.08);
   box-shadow: 0 0 18px rgba(0, 230, 247, 0.25);
 }
+.btn-outline:active { opacity: 0.75; }
+
+/* Accessibility */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
 
 /* Cards */
 .card {
@@ -95,7 +105,7 @@ h1, h2, h3, .font-orbitron {
 
 /* Titles */
 .section-title {
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 700;
   color: var(--cyan);
   font-family: var(--font-orbitron), monospace;
