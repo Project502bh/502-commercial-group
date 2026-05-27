@@ -2,15 +2,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { translations, type Lang } from '@/lib/data';
+import { translations } from '@/lib/data';
+import { useLang } from '@/lib/LangContext';
 
 interface NavbarProps {
-  lang: Lang;
-  setLang: (l: Lang) => void;
   activePage?: string;
 }
 
-export default function Navbar({ lang, setLang, activePage }: NavbarProps) {
+export default function Navbar({ activePage }: NavbarProps) {
+  const { lang, setLang } = useLang();
   const t = translations[lang];
   const [open, setOpen] = useState(false);
   const isRtl = lang === 'ar';
@@ -124,9 +124,10 @@ export default function Navbar({ lang, setLang, activePage }: NavbarProps) {
               color: activePage === l.key ? '#00E6F7' : '#7AAFC0',
               fontFamily: 'var(--font-montserrat), sans-serif',
               fontSize: '0.9rem',
-              fontWeight: 500,
+              fontWeight: activePage === l.key ? 600 : 500,
               letterSpacing: '0.04em',
               textDecoration: 'none',
+              transition: 'color 0.2s',
             }}>
               {t.nav[l.key]}
             </Link>

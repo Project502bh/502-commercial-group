@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Orbitron, Montserrat } from "next/font/google";
+import { LangProvider } from "@/lib/LangContext";
 import "./globals.css";
 
 const orbitron = Orbitron({
@@ -23,8 +24,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${orbitron.variable} ${montserrat.variable}`}>
-      <body className="min-h-screen">{children}</body>
+    <html className={`${orbitron.variable} ${montserrat.variable}`}>
+      <body className="min-h-screen">
+        <LangProvider>{children}</LangProvider>
+      </body>
     </html>
   );
 }

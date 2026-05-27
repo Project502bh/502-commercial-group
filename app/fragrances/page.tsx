@@ -3,7 +3,8 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { translations, fragrances, fragranceFamilies, concentrations, type Lang } from '@/lib/data';
+import { translations, fragrances, fragranceFamilies, concentrations } from '@/lib/data';
+import { useLang } from '@/lib/LangContext';
 
 const familyIcons: Record<string, string> = {
   Citrus: '🍋', Floral: '🌸', 'Fresh Woody': '🌿', 'Fresh Fruity': '🍑', 'Oriental Woody': '🪵',
@@ -11,7 +12,7 @@ const familyIcons: Record<string, string> = {
 };
 
 export default function FragrancesPage() {
-  const [lang, setLang] = useState<Lang>('en');
+  const { lang } = useLang();
   const [family, setFamily] = useState('All');
   const [concentration, setConcentration] = useState('All');
   const [hotelOnly, setHotelOnly] = useState(false);
@@ -34,7 +35,7 @@ export default function FragrancesPage() {
 
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'} style={{ minHeight: '100vh' }}>
-      <Navbar lang={lang} setLang={setLang} activePage="fragrances" />
+      <Navbar activePage="fragrances" />
 
       {/* Header */}
       <section className="hero-bg" style={{ padding: '4rem 0 3rem' }}>
@@ -178,7 +179,7 @@ export default function FragrancesPage() {
                       <div style={{ color: '#9A9080', fontSize: '0.7rem', marginTop: '0.5rem' }}>
                         Code: <span style={{ color: '#C9A84C' }}>{f.code}</span>
                       </div>
-                      <Link href="/contact" className="btn-gold" style={{ display: 'block', textAlign: 'center', marginTop: '1rem', padding: '0.5rem' }}
+                      <Link href="/contact" className="btn-cyan" style={{ display: 'block', textAlign: 'center', marginTop: '1rem', padding: '0.5rem' }}
                         onClick={e => e.stopPropagation()}>
                         {isRtl ? 'طلب عينة' : 'Request Sample'}
                       </Link>
@@ -195,7 +196,7 @@ export default function FragrancesPage() {
         </div>
       </section>
 
-      <Footer lang={lang} />
+      <Footer />
     </div>
   );
 }

@@ -3,16 +3,17 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { translations, brands, type Lang } from '@/lib/data';
+import { translations, brands } from '@/lib/data';
+import { useLang } from '@/lib/LangContext';
 
 export default function BrandsPage() {
-  const [lang, setLang] = useState<Lang>('en');
+  const { lang } = useLang();
   const t = translations[lang];
   const isRtl = lang === 'ar';
 
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'} style={{ minHeight: '100vh' }}>
-      <Navbar lang={lang} setLang={setLang} activePage="brands" />
+      <Navbar activePage="brands" />
 
       {/* Header */}
       <section className="hero-bg" style={{ padding: '4rem 0 3rem' }}>
@@ -106,7 +107,7 @@ export default function BrandsPage() {
         </div>
       </section>
 
-      <Footer lang={lang} />
+      <Footer />
     </div>
   );
 }

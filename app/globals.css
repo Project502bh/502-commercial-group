@@ -59,26 +59,7 @@ h1, h2, h3, .font-orbitron {
   box-shadow: 0 0 28px rgba(0, 230, 247, 0.45);
   transform: translateY(-2px);
 }
-/* Keep backward compat alias */
-.btn-gold {
-  background: linear-gradient(135deg, var(--cyan), var(--cyan-light));
-  color: var(--navy);
-  font-weight: 700;
-  padding: 0.75rem 2rem;
-  border-radius: 0.375rem;
-  transition: all 0.3s;
-  display: inline-block;
-  cursor: pointer;
-  border: none;
-  font-size: 0.9rem;
-  letter-spacing: 0.04em;
-  font-family: var(--font-orbitron), monospace;
-  text-transform: uppercase;
-}
-.btn-gold:hover {
-  box-shadow: 0 0 28px rgba(0, 230, 247, 0.45);
-  transform: translateY(-2px);
-}
+/* btn-gold removed — use btn-cyan consistently */
 
 .btn-outline {
   border: 1px solid var(--cyan);

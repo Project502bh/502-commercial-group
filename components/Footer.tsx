@@ -1,7 +1,10 @@
+import Link from 'next/link';
 import Image from 'next/image';
-import { translations, type Lang } from '@/lib/data';
+import { translations } from '@/lib/data';
+import { useLang } from '@/lib/LangContext';
 
-export default function Footer({ lang }: { lang: Lang }) {
+export default function Footer() {
+  const { lang } = useLang();
   const t = translations[lang];
   const isRtl = lang === 'ar';
 
@@ -44,9 +47,12 @@ export default function Footer({ lang }: { lang: Lang }) {
               { en: 'Contact Us', ar: 'تواصل معنا', href: '/contact' },
             ].map(l => (
               <div key={l.href} style={{ marginBottom: '0.5rem' }}>
-                <a href={l.href} style={{ color: '#7AAFC0', fontSize: '0.82rem', textDecoration: 'none', transition: 'color 0.2s' }}>
+                <Link href={l.href} style={{ color: '#7AAFC0', fontSize: '0.82rem', textDecoration: 'none', transition: 'color 0.2s' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#00E6F7')}
+                  onMouseLeave={e => (e.currentTarget.style.color = '#7AAFC0')}
+                >
                   {isRtl ? l.ar : l.en}
-                </a>
+                </Link>
               </div>
             ))}
           </div>

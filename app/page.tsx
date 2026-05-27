@@ -1,19 +1,19 @@
 'use client';
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { translations, group502, brands, type Lang } from '@/lib/data';
+import { translations, group502, brands } from '@/lib/data';
+import { useLang } from '@/lib/LangContext';
 
 export default function HomePage() {
-  const [lang, setLang] = useState<Lang>('en');
+  const { lang } = useLang();
   const t = translations[lang];
   const isRtl = lang === 'ar';
 
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'} style={{ minHeight: '100vh' }}>
-      <Navbar lang={lang} setLang={setLang} activePage="home" />
+      <Navbar activePage="home" />
 
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className="hero-bg" style={{ padding: '7rem 0 5rem', position: 'relative', overflow: 'hidden' }}>
@@ -219,7 +219,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Footer lang={lang} />
+      <Footer />
     </div>
   );
 }

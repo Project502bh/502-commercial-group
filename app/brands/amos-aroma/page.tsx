@@ -3,7 +3,8 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { translations, diffusers, fragrances, fragranceFamilies, concentrations, type Lang } from '@/lib/data';
+import { translations, diffusers, fragrances, fragranceFamilies, concentrations } from '@/lib/data';
+import { useLang } from '@/lib/LangContext';
 
 type Tab = 'overview' | 'diffusers' | 'fragrances' | 'lifestyle';
 
@@ -61,7 +62,7 @@ const lifestyleProducts = [
 ];
 
 export default function AmosAromaPage() {
-  const [lang, setLang] = useState<Lang>('en');
+  const { lang } = useLang();
   const [tab, setTab] = useState<Tab>('overview');
   const [diffFilter, setDiffFilter] = useState<'all' | 'commercial' | 'personal'>('all');
   const [fragFamily, setFragFamily] = useState('All');
@@ -92,7 +93,7 @@ export default function AmosAromaPage() {
 
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'} style={{ minHeight: '100vh' }}>
-      <Navbar lang={lang} setLang={setLang} activePage="brands" />
+      <Navbar activePage="brands" />
 
       {/* Breadcrumb + Brand Header */}
       <section className="hero-bg" style={{ padding: '3.5rem 0 0' }}>
@@ -447,7 +448,7 @@ export default function AmosAromaPage() {
                     <p style={{ color: '#7AAFC0', fontSize: '0.85rem', lineHeight: 1.75, flexGrow: 1, marginBottom: '1.5rem' }}>
                       {isRtl ? p.descAr : p.descEn}
                     </p>
-                    <Link href="/contact" className="btn-gold" style={{ textAlign: 'center', display: 'block', textDecoration: 'none' }}>
+                    <Link href="/contact" className="btn-cyan" style={{ textAlign: 'center', display: 'block', textDecoration: 'none' }}>
                       {isRtl ? 'استفسار' : 'Inquire'}
                     </Link>
                   </div>
@@ -471,7 +472,7 @@ export default function AmosAromaPage() {
                     ? 'نوفر حلول هدايا مخصصة للشركات والفنادق والمؤسسات — يمكن تخصيص العبوات بشعار شركتك وعطورك المفضلة.'
                     : 'We provide custom gifting solutions for corporations, hotels, and institutions — packaging can be customized with your brand logo and preferred scents.'}
                 </p>
-                <Link href="/contact" className="btn-gold" style={{ textDecoration: 'none' }}>
+                <Link href="/contact" className="btn-cyan" style={{ textDecoration: 'none' }}>
                   {isRtl ? 'تواصل مع فريق المبيعات' : 'Contact Sales Team'}
                 </Link>
               </div>
@@ -493,7 +494,7 @@ export default function AmosAromaPage() {
         </>
       )}
 
-      <Footer lang={lang} />
+      <Footer />
     </div>
   );
 }

@@ -4,10 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { translations, type Lang } from '@/lib/data';
+import { translations } from '@/lib/data';
+import { useLang } from '@/lib/LangContext';
 
 export default function ContactPage() {
-  const [lang, setLang] = useState<Lang>('en');
+  const { lang } = useLang();
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', phone: '', type: '', message: '' });
   const t = translations[lang];
@@ -48,7 +49,7 @@ export default function ContactPage() {
 
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'} style={{ minHeight: '100vh' }}>
-      <Navbar lang={lang} setLang={setLang} activePage="contact" />
+      <Navbar activePage="contact" />
 
       {/* Header */}
       <section className="hero-bg" style={{ padding: '4rem 0 3rem' }}>
@@ -229,7 +230,7 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <button type="submit" className="btn-gold" style={{ width: '100%', textAlign: 'center' }}>
+                  <button type="submit" className="btn-cyan" style={{ width: '100%', textAlign: 'center' }}>
                     {t.contact.send}
                   </button>
                 </form>
@@ -239,7 +240,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <Footer lang={lang} />
+      <Footer />
     </div>
   );
 }

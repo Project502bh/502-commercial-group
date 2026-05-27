@@ -3,7 +3,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { translations, diffusers, type Lang } from '@/lib/data';
+import { translations, diffusers } from '@/lib/data';
+import { useLang } from '@/lib/LangContext';
 
 const specs: Record<string, { en: string; ar: string }[]> = {
   sp5000: [
@@ -60,7 +61,7 @@ const specs: Record<string, { en: string; ar: string }[]> = {
 };
 
 export default function DiffusersPage() {
-  const [lang, setLang] = useState<Lang>('en');
+  const { lang } = useLang();
   const [filter, setFilter] = useState<'all' | 'commercial' | 'personal'>('all');
   const t = translations[lang];
   const isRtl = lang === 'ar';
@@ -69,19 +70,19 @@ export default function DiffusersPage() {
 
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'} style={{ minHeight: '100vh' }}>
-      <Navbar lang={lang} setLang={setLang} activePage="diffusers" />
+      <Navbar activePage="diffusers" />
 
       {/* Header */}
       <section className="hero-bg" style={{ padding: '4rem 0 3rem' }}>
         <div className="max-w-7xl mx-auto px-6">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#9A9080', fontSize: '0.8rem', marginBottom: '1.5rem' }}>
-            <Link href="/" style={{ color: '#9A9080' }}>{isRtl ? 'الرئيسية' : 'Home'}</Link>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#7AAFC0', fontSize: '0.8rem', marginBottom: '1.5rem' }}>
+            <Link href="/" style={{ color: '#7AAFC0', textDecoration: 'none' }}>{isRtl ? 'الرئيسية' : 'Home'}</Link>
             <span>/</span>
-            <span style={{ color: '#C9A84C' }}>{t.nav.diffusers}</span>
+            <span style={{ color: '#00E6F7' }}>{t.nav.diffusers}</span>
           </div>
           <h1 className="section-title">{t.diffusers.title}</h1>
           <div className="divider" />
-          <p style={{ color: '#9A9080', fontSize: '1rem', maxWidth: '600px', lineHeight: 1.7 }}>{t.diffusers.subtitle}</p>
+          <p style={{ color: '#7AAFC0', fontSize: '1rem', maxWidth: '600px', lineHeight: 1.7 }}>{t.diffusers.subtitle}</p>
 
           {/* Filter tabs */}
           <div style={{ display: 'flex', gap: '0.75rem', marginTop: '2rem', flexWrap: 'wrap' }}>
@@ -91,9 +92,9 @@ export default function DiffusersPage() {
                   padding: '0.5rem 1.25rem',
                   borderRadius: '999px',
                   border: '1px solid',
-                  borderColor: filter === f ? '#C9A84C' : 'rgba(201,168,76,0.25)',
-                  background: filter === f ? 'rgba(201,168,76,0.15)' : 'transparent',
-                  color: filter === f ? '#C9A84C' : '#9A9080',
+                  borderColor: filter === f ? '#00E6F7' : 'rgba(0,230,247,0.25)',
+                  background: filter === f ? 'rgba(0,230,247,0.12)' : 'transparent',
+                  color: filter === f ? '#00E6F7' : '#7AAFC0',
                   cursor: 'pointer',
                   fontSize: '0.85rem',
                   fontWeight: filter === f ? 600 : 400,
@@ -147,7 +148,7 @@ export default function DiffusersPage() {
                   ))}
                 </div>
 
-                <Link href="/contact" className="btn-gold" style={{ textAlign: 'center', display: 'block' }}>
+                <Link href="/contact" className="btn-cyan" style={{ textAlign: 'center', display: 'block' }}>
                   {t.diffusers.inquire}
                 </Link>
               </div>
@@ -157,7 +158,7 @@ export default function DiffusersPage() {
       </section>
 
       {/* IoT Feature Section */}
-      <section style={{ padding: '4rem 0', background: '#0D0D0D', borderTop: '1px solid rgba(201,168,76,0.1)' }}>
+      <section style={{ padding: '4rem 0', background: 'var(--navy-2)', borderTop: '1px solid rgba(0,230,247,0.1)' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h2 className="section-title">{isRtl ? 'منصة التحكم الذكي' : 'Smart IoT Platform'}</h2>
@@ -172,15 +173,15 @@ export default function DiffusersPage() {
             ].map(f => (
               <div key={f.icon} className="card" style={{ padding: '1.5rem', textAlign: 'center' }}>
                 <div style={{ fontSize: '2rem', marginBottom: '0.75rem' }}>{f.icon}</div>
-                <div style={{ color: '#C9A84C', fontWeight: 600, marginBottom: '0.5rem' }}>{isRtl ? f.ar : f.en}</div>
-                <div style={{ color: '#9A9080', fontSize: '0.82rem' }}>{isRtl ? f.desc_ar : f.desc_en}</div>
+                <div style={{ color: '#00E6F7', fontWeight: 600, marginBottom: '0.5rem', fontFamily: 'var(--font-orbitron), monospace', fontSize: '0.8rem', letterSpacing: '0.04em' }}>{isRtl ? f.ar : f.en}</div>
+                <div style={{ color: '#7AAFC0', fontSize: '0.82rem' }}>{isRtl ? f.desc_ar : f.desc_en}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <Footer lang={lang} />
+      <Footer />
     </div>
   );
 }

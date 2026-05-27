@@ -3,7 +3,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { translations, type Lang } from '@/lib/data';
+import { translations } from '@/lib/data';
+import { useLang } from '@/lib/LangContext';
 
 const products = [
   {
@@ -69,13 +70,13 @@ const products = [
 ];
 
 export default function LifestylePage() {
-  const [lang, setLang] = useState<Lang>('en');
+  const { lang } = useLang();
   const t = translations[lang];
   const isRtl = lang === 'ar';
 
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'} style={{ minHeight: '100vh' }}>
-      <Navbar lang={lang} setLang={setLang} activePage="lifestyle" />
+      <Navbar activePage="lifestyle" />
 
       {/* Header */}
       <section className="hero-bg" style={{ padding: '4rem 0 3rem' }}>
@@ -136,13 +137,13 @@ export default function LifestylePage() {
               ? 'نوفر طقم هدايا مخصصة للشركات والمناسبات مع خيارات التغليف الفاخر والطباعة الخاصة.'
               : 'Custom corporate gift sets with luxury packaging and private label options available.'}
           </p>
-          <Link href="/contact" className="btn-gold">
+          <Link href="/contact" className="btn-cyan">
             {isRtl ? 'طلب عرض أسعار مؤسسي' : 'Corporate Quote'}
           </Link>
         </div>
       </section>
 
-      <Footer lang={lang} />
+      <Footer />
     </div>
   );
 }
